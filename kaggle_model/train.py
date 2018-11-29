@@ -67,11 +67,11 @@ def main(args):
     #Initialize net
     if validate: 
         net = NeuralNetClassifier(module=cnn.KaggleNet().double(), criterion=nn.CrossEntropyLoss, optimizer = optim.Adam, 
-                                lr= 0.0001, max_epochs = 1, train_split = CVSplit(0.1, random_state = 0)
+                                lr= 0.0001, max_epochs = 40, train_split = CVSplit(0.1, random_state = 0)
                                 , device = device, iterator_train__batch_size = 128, iterator_valid__batch_size=512)
     else:
         net = NeuralNetClassifier(module=cnn.KaggleNet().double(), criterion=nn.CrossEntropyLoss, optimizer = optim.Adam, 
-                                lr= 0.0001, max_epochs = 1, train_split = None
+                                lr= 0.0001, max_epochs = 40, train_split = None
                                 ,device = device, iterator_train__batch_size = 128, iterator_valid__batch_size=512)
 
     #Train the model

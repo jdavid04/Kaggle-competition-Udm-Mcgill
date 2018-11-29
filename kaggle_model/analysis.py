@@ -6,12 +6,15 @@ are determined by the command line arguments as expressed below.
 Usage: 
 analysis.py <histpath> <encpath> <predspath> <outdir> <id>
 """
-
+import os
+import matplotlib as mpl
+if os.environ.get('DISPLAY','') == '':
+    mpl.use('Agg')
+import matplotlib.pyplot as plt
 import pickle
 import pandas as pd
 from sklearn.metrics import confusion_matrix
 import matplotlib.ticker as ticker
-import matplotlib.pyplot as plt
 from skorch.history import History
 from docopt import docopt
 from sklearn.externals import joblib

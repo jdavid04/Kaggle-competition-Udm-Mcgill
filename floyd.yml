@@ -8,12 +8,22 @@ env: pytorch-0.4
 #
 task:
   train:
-    machine: cpu
+    machine: gpu
     input:
     - destination: Data
       source: jdavid04/datasets/kaggledata/1
-    command: python kaggle_model/train.py /Data/train_rois4.npy /Data/train_labels.csv -v
-#
-#  serve:
-#    machine: cpu
-#    mode: serve
+    command: python kaggle_model/train.py /Data/train_rois4.npy /Data/train_labels.csv -v -s Model\ outputs/ lr0001nr -p Predictions/test.csv
+
+  evaluate:
+    machine: cpu
+    #input:
+    #- destination: Out
+     # source: jdavid04/projects/kaggle-udem/30
+    command: python kaggle_model/analysis.py /Out/Model\ outputs/model_history_test.json /Out/Model\ outputs/encoding_test.pkl /Out/Predictions/test.csv Analysis/ test
+
+  predict:
+    machine: gpu
+    input:
+    - destination: Data
+      source: jdavid04/datasets/kaggledata/1
+    command: python kaggle_model/predict.py /Data/test_rois4.npy /Out/Model\ outputs/encoding_test.pkl /Out/Model\ outputs/model_test.pkl Predictions/submissionlr001nr.csv
