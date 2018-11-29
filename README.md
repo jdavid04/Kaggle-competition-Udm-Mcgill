@@ -2,9 +2,10 @@
 
 ## Folder contents
 ### Analysis
-      Training curves
+      Training curves 
       Confusion matrices
       Performance reports
+      Note, the "wr" models have metrics on a different scale effectively. should be revisited if using these in report.
 ### Predictions
     Predictions on test and validation sets
 ### kaggle_model
