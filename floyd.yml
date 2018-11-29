@@ -1,19 +1,18 @@
 # see: https://docs.floydhub.com/floyd_config
 # All supported configs:
 #
-machine: gpu
+
 env: pytorch-0.4
-input:
-  - destination: Data
-    source: jdavid04/datasets/kaggledata/1
-command: python kaggle_model/train.py
 
 # You can also define multiple tasks to use with --task argument:
 #
-#task:
-#  evaluate:
-#    machine: gpu
-#    command: python evaluate.py
+task:
+  train:
+    machine: cpu
+    input:
+    - destination: Data
+      source: jdavid04/datasets/kaggledata/1
+    command: python kaggle_model/train.py /Data/train_rois4.npy /Data/train_labels.csv -v
 #
 #  serve:
 #    machine: cpu
