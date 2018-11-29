@@ -12,18 +12,18 @@ task:
     input:
     - destination: Data
       source: jdavid04/datasets/kaggledata/1
-    command: python kaggle_model/train.py /Data/train_rois4.npy /Data/train_labels.csv -v -s Model\ outputs/ lr0001nr -p Predictions/test.csv
+    command: python kaggle_model/train.py /Data/train_rois4.npy /Data/train_labels.csv -v -s Model\ outputs/ lr00005nr -p Predictions/valid_lr00005nr.csv
 
   evaluate:
     machine: cpu
     #input:
     #- destination: Out
      # source: jdavid04/projects/kaggle-udem/30
-    command: python kaggle_model/analysis.py /Out/Model\ outputs/model_history_test.json /Out/Model\ outputs/encoding_test.pkl /Out/Predictions/test.csv Analysis/ test
+    command: python kaggle_model/analysis.py /Out/Model\ outputs/model_history_lr00005nr.json /Out/Model\ outputs/encoding_lr00005nr.pkl /Out/Predictions/valid_lr00005nr.csv Analysis/ lr00005nr
 
   predict:
     machine: gpu
     input:
     - destination: Data
       source: jdavid04/datasets/kaggledata/1
-    command: python kaggle_model/predict.py /Data/test_rois4.npy /Out/Model\ outputs/encoding_test.pkl /Out/Model\ outputs/model_test.pkl Predictions/submissionlr001nr.csv
+    command: python kaggle_model/predict.py /Data/test_rois4.npy /Out/Model\ outputs/encoding_lr00005nr.pkl /Out/Model\ outputs/model_lr00005nr.pkl Predictions/submissionlr00005nr.csv
